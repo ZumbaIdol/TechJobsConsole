@@ -62,36 +62,18 @@ namespace TechJobsConsole
         {
             LoadData();
 
-                List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
                 foreach (Dictionary<string, string> row in AllJobs)
                 {
-                    /*
-                    string aValue = row[value].ToLower();
-                    foreach (Dictionary<string, string> item in AllJobs)
+                    foreach (KeyValuePair<string, string> job in row)
                     {
-                        foreach (KeyValuePair<string, string> pair in item)
-                        {
-                            return jobs;
-                        }
-                        
-                    }
-
-                    if (aValue.Contains(value.ToLower()))
-                    {
-                        return new List<Dictionary<string, string>>() { row };
-                    
-                    }
-                    */
-                    foreach (Dictionary<string, string> job in AllJobs)
-                    {
-                        string aValue = job[column];
+                        string aValue = [job.Key, job.Value];
 
                         if (!aValue.Contains(aValue))
                         {
-                            value.Add(aValue);
+                            jobs.Add(row);
                         }
                     }
-                    return value;
+                    return new List<Dictionary<string, string>>();
                 }      
                         
             }
