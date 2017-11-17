@@ -59,12 +59,22 @@ namespace TechJobsConsole
                     string searchTerm = Console.ReadLine();
 
                     List<Dictionary<string, string>> searchResults;
+                   /* var dict = new Dictionary<string, Program>(
+                        StringComparer.InvariantCultureIgnoreCase);*/
+
 
                     // Fetch results
                     if (columnChoice.Equals("all"))
                     {
+                        
+                    }
+
+                    /*
+                    {
                         Console.WriteLine("Search all fields not yet implemented.");
                     }
+                    */
+
                     else
                     {
                         searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
@@ -74,6 +84,7 @@ namespace TechJobsConsole
             }
         }
 
+                
         /*
          * Returns the key of the selected item from the choices Dictionary
          */
