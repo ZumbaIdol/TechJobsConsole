@@ -91,7 +91,7 @@ namespace TechJobsConsole
                     foreach (KeyValuePair<string, string> job in row)
                     {
                         string aValue = job.Value.ToLower();
-                        if (aValue.Equals(value.ToLower()))
+                        if (aValue.Contains(value.ToLower()))
 
                         {
                             jobs.Add(row);
