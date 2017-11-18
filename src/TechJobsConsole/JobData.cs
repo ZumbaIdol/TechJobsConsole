@@ -3,13 +3,36 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Collections;
 
 namespace TechJobsConsole
 {
-    class JobData
+    public static class LinqHelper
+    { }
+
+    class JobData : IJobData
     {
+        public static class Extensions
+        {
+        }
+
+        //public static bool CaseInsensitiveContains(string text)
+        //{
+        //    char value = default(char);
+        //    int stringComparison = 0;
+        //    return text.IndexOf(value, stringComparison) >= 0;
+        //}
+         
+
         static List<Dictionary<string, string>> AllJobs = new List<Dictionary<string, string>>();
         static bool IsDataLoaded = false;
+        private static int stringLower;
+
+        public JobData()
+        {
+        }
+
+        public static int StringLower { get => stringLower; set => stringLower = value; }
 
         public static List<Dictionary<string, string>> FindAll()
         {
@@ -29,9 +52,9 @@ namespace TechJobsConsole
 
             foreach (Dictionary<string, string> job in AllJobs)
             {
-                string aValue = job[column];
+                string aValue = job[column].ToLower();
 
-                if (!values.Contains(aValue))
+                if (!values.Contains(aValue.ToLower()))
                 {
                     values.Add(aValue);
                 }
@@ -48,9 +71,9 @@ namespace TechJobsConsole
 
             foreach (Dictionary<string, string> row in AllJobs)
             {
-                string aValue = row[column];
+                string aValue = row[column].ToLower();
 
-                if (aValue.Contains(value))
+                if (aValue.Contains(value.ToLower()))
                 {
                     jobs.Add(row);
                 }
@@ -67,8 +90,8 @@ namespace TechJobsConsole
                 {
                     foreach (KeyValuePair<string, string> job in row)
                     {
-                        string aValue = job.Value;
-                        if (aValue.Equals(value))
+                        string aValue = job.Value.ToLower();
+                        if (aValue.Equals(value.ToLower()))
 
                         {
                             jobs.Add(row);
@@ -162,6 +185,21 @@ namespace TechJobsConsole
 
             return rowValues.ToArray();
 
-        }        
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }
